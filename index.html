@@ -1,0 +1,851 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>extra-array</title>
+	<meta name="description" content="Documentation for extra-array">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">extra-array</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>extra-array</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> is a collection of values, stored contiguously.<br>
+					:package: <a href="https://www.npmjs.com/package/extra-array">NPM</a>,
+					:smiley_cat: <a href="https://github.com/orgs/nodef/packages?repo_name=extra-array">GitHub</a>,
+					:running: <a href="https://npm.runkit.com/extra-array">RunKit</a>,
+					:vhs: <a href="https://asciinema.org/a/337172">Asciinema</a>,
+					:moon: <a href="https://www.npmjs.com/package/extra-array.min">Minified</a>,
+					:scroll: <a href="https://unpkg.com/extra-array/">Files</a>,
+					:newspaper: <a href="https://nodef.github.io/extra-array/">JSDoc</a>,
+				:blue_book: <a href="https://github.com/nodef/extra-array/wiki/">Wiki</a>.</p>
+				<p>All functions except <code>from*()</code> take array as 1st parameter. Some methods
+					accept a map function for <em>faster comparision</em> (like <a href="https://github.com/nodef/extra-array/wiki/unique">unique</a>). I find the
+					map-approach beautiful, which i learned from Haskell&#39;s <code>sortOn()</code>. You can
+					notice that i have followed Javascript naming scheme as far as possible.
+				Some names are borrowed from Haskell, Python, Java, Processing.</p>
+				<p>Methods look like:</p>
+				<ul>
+					<li><code>swap()</code>: doesn&#39;t modify the array itself (pure).</li>
+					<li><code>swap$()</code>: modifies the array itself (update).</li>
+				</ul>
+				<p>Methods as separate packages:</p>
+				<ul>
+					<li><code>@extra-array/swap</code>: use <a href="https://www.npmjs.com/package/rollup">rollup</a> to bundle this es module.</li>
+					<li><code>@extra-array/swap.min</code>: use in browser (<a href="https://www.npmjs.com/package/browserify">browserify</a>, <a href="https://www.npmjs.com/package/uglify-js">uglify-js</a>).</li>
+				</ul>
+				<blockquote>
+					<p>Stability: Experimental.</p>
+				</blockquote>
+				<br>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">array</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;extra-array&quot;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// import * as array from &quot;extra-array&quot;;</span>
+<span style="color: #008000">// import * as array from &quot;https://unpkg.com/extra-array@2.10.15/index.mjs&quot;; (deno)</span>
+
+<span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">x</span><span style="color: #000000"> = [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">];</span>
+<span style="color: #001080">array</span><span style="color: #000000">.</span><span style="color: #795E26">get</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, -</span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #008000">// 3</span>
+
+<span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">x</span><span style="color: #000000"> = [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">];</span>
+<span style="color: #001080">array</span><span style="color: #000000">.</span><span style="color: #795E26">swap</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #008000">// [2, 1, 3, 4]</span>
+
+<span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">x</span><span style="color: #000000"> = [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">4</span><span style="color: #000000">];</span>
+<span style="color: #001080">array</span><span style="color: #000000">.</span><span style="color: #795E26">rotate</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #008000">// [4, 1, 2, 3]</span>
+
+<span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">x</span><span style="color: #000000"> = [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">7</span><span style="color: #000000">];</span>
+<span style="color: #001080">array</span><span style="color: #000000">.</span><span style="color: #795E26">bsearch</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">);</span>
+<span style="color: #008000">// 2           ^ found</span>
+
+<span style="color: #000000">[...</span><span style="color: #001080">array</span><span style="color: #000000">.</span><span style="color: #795E26">permutations</span><span style="color: #000000">([</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">])];</span>
+<span style="color: #008000">// [</span>
+<span style="color: #008000">//   [],          [ 1 ],</span>
+<span style="color: #008000">//   [ 2 ],       [ 3 ],</span>
+<span style="color: #008000">//   [ 1, 2 ],    [ 1, 3 ],</span>
+<span style="color: #008000">//   [ 2, 1 ],    [ 2, 3 ],</span>
+<span style="color: #008000">//   [ 3, 1 ],    [ 3, 2 ],</span>
+<span style="color: #008000">//   [ 1, 2, 3 ], [ 1, 3, 2 ],</span>
+<span style="color: #008000">//   [ 2, 1, 3 ], [ 2, 3, 1 ],</span>
+<span style="color: #008000">//   [ 3, 1, 2 ], [ 3, 2, 1 ]</span>
+<span style="color: #008000">// ]</span>
+</code></pre>
+				<br>
+				<br>
+				<a href="#index" id="index" style="color: inherit; text-decoration: none;">
+					<h2>Index</h2>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Method</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/is">is</a></td>
+							<td>Checks if value is array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/get">get</a></td>
+							<td>Gets value at index.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/set">set</a></td>
+							<td>Sets value at index.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/swap">swap</a></td>
+							<td>Exchanges two values.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/index">index</a></td>
+							<td>Gets zero-based index.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/indexRange">indexRange</a></td>
+							<td>Gets index range of part of array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/size">size</a></td>
+							<td>Counts the number of values.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/fill">fill</a></td>
+							<td>Fills with given value.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/copy">copy</a></td>
+							<td>Copies part of array to another.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/concat">concat</a></td>
+							<td>Appends values from arrays.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/slice">slice</a></td>
+							<td>Gets a part of array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/splice">splice</a></td>
+							<td>Removes or replaces existing values.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/flat">flat</a></td>
+							<td>Flattens nested array to given depth.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/cut">cut</a></td>
+							<td>Breaks array when test passes.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/chunk">chunk</a></td>
+							<td>Breaks array into chunks of given size.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/cycle">cycle</a></td>
+							<td>Gives values that cycle through array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/repeat">repeat</a></td>
+							<td>Repeats an array given times.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/reverse">reverse</a></td>
+							<td>Reverses the array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/rotate">rotate</a></td>
+							<td>Rotates values in array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/interleave">interleave</a></td>
+							<td>Merges values from arrays.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/min">min</a></td>
+							<td>Finds smallest value.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/max">max</a></td>
+							<td>Finds largest entry.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/range">range</a></td>
+							<td>Finds smallest and largest entries.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/map">map</a></td>
+							<td>Updates values based on map function.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/filter">filter</a></td>
+							<td>Keeps values which pass a test.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/count">count</a></td>
+							<td>Counts values which satisfy a test.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/partition">partition</a></td>
+							<td>Segregates values by test result.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/group">group</a></td>
+							<td>Breaks array keeping similar values together.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/split">split</a></td>
+							<td>Breaks array considering test as separator.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/zip">zip</a></td>
+							<td>Combines values from arrays.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/unique">unique</a></td>
+							<td>Removes duplicate values.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/union">union</a></td>
+							<td>Gives values present in any array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/intersection">intersection</a></td>
+							<td>Gives values present in both arrays.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/difference">difference</a></td>
+							<td>Gives values of array not present in another.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/isUnique">isUnique</a></td>
+							<td>Checks if there are no duplicate values.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/isDisjoint">isDisjoint</a></td>
+							<td>Checks if arrays have no value in common.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/value">value</a></td>
+							<td>Picks an arbitrary value.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/prefix">prefix</a></td>
+							<td>Picks an arbitrary prefix.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/infix">infix</a></td>
+							<td>Picks an arbitrary infix.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/suffix">suffix</a></td>
+							<td>Picks an arbitrary suffix.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/subsequence">subsequence</a></td>
+							<td>Picks an arbitrary subsequence.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/permutation">permutation</a></td>
+							<td>Picks an arbitrary permutation.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/isEqual">isEqual</a></td>
+							<td>Checks if two arrays are equal.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/compare">compare</a></td>
+							<td>Compares two arrays.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/search">search</a></td>
+							<td>Finds index of first value passing a test.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/bsearch">bsearch</a></td>
+							<td>Binary searches leftmost value in sorted array.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/find">find</a></td>
+							<td>Finds first value passing a test.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/findIndex">findIndex</a></td>
+							<td>Finds index of leftmost value passing a test.</td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/nodef/extra-array/wiki/sort">sort</a></td>
+							<td>Arranges values in an order.</td>
+						</tr>
+				</tbody></table>
+				<br>
+				<br>
+				<p><a href="https://www.youtube.com/watch?v=VYOOiIJeBOA"><img src="https://img.youtube.com/vi/VYOOiIJeBOA/maxresdefault.jpg" alt=""></a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#accumulate" class="tsd-kind-icon">accumulate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cartesianproduct" class="tsd-kind-icon">cartesian<wbr>Product</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#chunk" class="tsd-kind-icon">chunk</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#compare" class="tsd-kind-icon">compare</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#concat" class="tsd-kind-icon">concat</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#concat_" class="tsd-kind-icon">concat$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#copy" class="tsd-kind-icon">copy</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#copy_" class="tsd-kind-icon">copy$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#copywithin" class="tsd-kind-icon">copy<wbr>Within</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#copywithin_" class="tsd-kind-icon">copy<wbr>Within$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#count" class="tsd-kind-icon">count</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#countas" class="tsd-kind-icon">count<wbr>As</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cut" class="tsd-kind-icon">cut</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cutat" class="tsd-kind-icon">cut<wbr>At</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cutatright" class="tsd-kind-icon">cut<wbr>AtRight</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cutright" class="tsd-kind-icon">cut<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#cycle" class="tsd-kind-icon">cycle</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#difference" class="tsd-kind-icon">difference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#drop" class="tsd-kind-icon">drop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#dropright" class="tsd-kind-icon">drop<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#dropwhile" class="tsd-kind-icon">drop<wbr>While</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#dropwhileright" class="tsd-kind-icon">drop<wbr>While<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#entries" class="tsd-kind-icon">entries</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#every" class="tsd-kind-icon">every</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#fill" class="tsd-kind-icon">fill</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#fill_" class="tsd-kind-icon">fill$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#filter" class="tsd-kind-icon">filter</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#filter_" class="tsd-kind-icon">filter$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#filterat" class="tsd-kind-icon">filter<wbr>At</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#find" class="tsd-kind-icon">find</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#findall" class="tsd-kind-icon">find<wbr>All</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#findright" class="tsd-kind-icon">find<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#flat" class="tsd-kind-icon">flat</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#from" class="tsd-kind-icon">from</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#from_" class="tsd-kind-icon">from$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#fromapply" class="tsd-kind-icon">from<wbr>Apply</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#fromrange" class="tsd-kind-icon">from<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#get" class="tsd-kind-icon">get</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#getall" class="tsd-kind-icon">get<wbr>All</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getpath" class="tsd-kind-icon">get<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#group" class="tsd-kind-icon">group</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#hasinfix" class="tsd-kind-icon">has<wbr>Infix</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#haspath" class="tsd-kind-icon">has<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#haspermutation" class="tsd-kind-icon">has<wbr>Permutation</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#hasprefix" class="tsd-kind-icon">has<wbr>Prefix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#hassubsequence" class="tsd-kind-icon">has<wbr>Subsequence</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#hassuffix" class="tsd-kind-icon">has<wbr>Suffix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#hasvalue" class="tsd-kind-icon">has<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#head" class="tsd-kind-icon">head</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#includes" class="tsd-kind-icon">includes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#index" class="tsd-kind-icon">index</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#indexof" class="tsd-kind-icon">index<wbr>Of</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#indexrange" class="tsd-kind-icon">index<wbr>Range</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#infix" class="tsd-kind-icon">infix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#infixes" class="tsd-kind-icon">infixes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#init" class="tsd-kind-icon">init</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#interleave" class="tsd-kind-icon">interleave</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#intermix" class="tsd-kind-icon">intermix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#interpolate" class="tsd-kind-icon">interpolate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#intersection" class="tsd-kind-icon">intersection</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#intersperse" class="tsd-kind-icon">intersperse</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#is" class="tsd-kind-icon">is</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#isdisjoint" class="tsd-kind-icon">is<wbr>Disjoint</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#isequal" class="tsd-kind-icon">is<wbr>Equal</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#isunique" class="tsd-kind-icon">is<wbr>Unique</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#join" class="tsd-kind-icon">join</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#keys" class="tsd-kind-icon">keys</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#last" class="tsd-kind-icon">last</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#lastindexof" class="tsd-kind-icon">last<wbr>Index<wbr>Of</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#left" class="tsd-kind-icon">left</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#length" class="tsd-kind-icon">length</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#map" class="tsd-kind-icon">map</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#map_" class="tsd-kind-icon">map$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#max" class="tsd-kind-icon">max</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#middle" class="tsd-kind-icon">middle</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#min" class="tsd-kind-icon">min</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#movewithin" class="tsd-kind-icon">move<wbr>Within</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#movewithin_" class="tsd-kind-icon">move<wbr>Within$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#partition" class="tsd-kind-icon">partition</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#partitionas" class="tsd-kind-icon">partition<wbr>As</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#permutation" class="tsd-kind-icon">permutation</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#permutation_" class="tsd-kind-icon">permutation$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#permutations" class="tsd-kind-icon">permutations</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#pop" class="tsd-kind-icon">pop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#pop_" class="tsd-kind-icon">pop$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#prefix" class="tsd-kind-icon">prefix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#prefixes" class="tsd-kind-icon">prefixes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#push" class="tsd-kind-icon">push</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#push_" class="tsd-kind-icon">push$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#range" class="tsd-kind-icon">range</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reduce" class="tsd-kind-icon">reduce</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reduceright" class="tsd-kind-icon">reduce<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reject" class="tsd-kind-icon">reject</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reject_" class="tsd-kind-icon">reject$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#rejectat" class="tsd-kind-icon">reject<wbr>At</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#remove" class="tsd-kind-icon">remove</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#remove_" class="tsd-kind-icon">remove$</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#removepath_" class="tsd-kind-icon">remove<wbr>Path$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#repeat" class="tsd-kind-icon">repeat</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reverse" class="tsd-kind-icon">reverse</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#reverse_" class="tsd-kind-icon">reverse$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#right" class="tsd-kind-icon">right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#rotate" class="tsd-kind-icon">rotate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#rotate_" class="tsd-kind-icon">rotate$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#scanuntil" class="tsd-kind-icon">scan<wbr>Until</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#scanuntilright" class="tsd-kind-icon">scan<wbr>Until<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#scanwhile" class="tsd-kind-icon">scan<wbr>While</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#scanwhileright" class="tsd-kind-icon">scan<wbr>While<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#search" class="tsd-kind-icon">search</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchall" class="tsd-kind-icon">search<wbr>All</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchinfix" class="tsd-kind-icon">search<wbr>Infix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchinfixall" class="tsd-kind-icon">search<wbr>Infix<wbr>All</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchinfixright" class="tsd-kind-icon">search<wbr>Infix<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchright" class="tsd-kind-icon">search<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchsubsequence" class="tsd-kind-icon">search<wbr>Subsequence</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchvalue" class="tsd-kind-icon">search<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchvalueall" class="tsd-kind-icon">search<wbr>Value<wbr>All</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#searchvalueright" class="tsd-kind-icon">search<wbr>Value<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#set" class="tsd-kind-icon">set</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#set_" class="tsd-kind-icon">set$</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#setpath_" class="tsd-kind-icon">set<wbr>Path$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#shift" class="tsd-kind-icon">shift</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#shift_" class="tsd-kind-icon">shift$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#size" class="tsd-kind-icon">size</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#slice" class="tsd-kind-icon">slice</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#slice_" class="tsd-kind-icon">slice$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#some" class="tsd-kind-icon">some</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#sort" class="tsd-kind-icon">sort</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#sort_" class="tsd-kind-icon">sort$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#splice" class="tsd-kind-icon">splice</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#splice_" class="tsd-kind-icon">splice$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#split" class="tsd-kind-icon">split</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#splitat" class="tsd-kind-icon">split<wbr>At</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#subsequence" class="tsd-kind-icon">subsequence</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#subsequences" class="tsd-kind-icon">subsequences</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#suffix" class="tsd-kind-icon">suffix</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#suffixes" class="tsd-kind-icon">suffixes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#swap" class="tsd-kind-icon">swap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#swap_" class="tsd-kind-icon">swap$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#symmetricdifference" class="tsd-kind-icon">symmetric<wbr>Difference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#tail" class="tsd-kind-icon">tail</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#take" class="tsd-kind-icon">take</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#takeright" class="tsd-kind-icon">take<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#takewhile" class="tsd-kind-icon">take<wbr>While</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#takewhileright" class="tsd-kind-icon">take<wbr>While<wbr>Right</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#union" class="tsd-kind-icon">union</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#union_" class="tsd-kind-icon">union$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#unique" class="tsd-kind-icon">unique</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#unshift" class="tsd-kind-icon">unshift</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#unshift_" class="tsd-kind-icon">unshift$</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#value" class="tsd-kind-icon">value</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#values" class="tsd-kind-icon">values</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#zip" class="tsd-kind-icon">zip</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
